@@ -7,9 +7,9 @@ public class Main {
         Scanner input =new Scanner(System.in);
         ArrayList<Media> medias = FileHandler.readFromFile();
 
-        for(Media m: medias){
+        /*for(Media m: medias){
             System.out.println(m);
-        }
-        //UI.mainMenu(input);
+        }*/
+        UI.mainMenu(input);
     }
 }
