@@ -8,4 +8,9 @@ public class Book extends Media{
         this.author=author;
         this.isbn=isbn;
     }
+
+    public String toString(){
+        return ("Book:\n" +"Title: "+title+"\nDate of issue: "+ year+ "\nTotal copies: "+copies+"\nAuthor: "+author+"\nISBN: "+isbn+"\n" );
+    }
 }
+

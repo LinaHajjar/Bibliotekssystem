@@ -1,0 +1,29 @@
+Bibliotekssystem, ArrayList, Arv,sortering
+
+
+Introduktion: Du er blevet bedt om at designe et simpelt bibliotekssystem til håndtering af medier som bøger, magasiner og aviser i et bibliotek. Systemet skal kunne registrere nye medier, slette eksisterende medier og vise en sorteret liste af medier.
+Krav:
+1.	Klasser og Objekter:
+○	Opret en abstrakt klasse Media med fælles egenskaber som title (titel), year (udgivelsesår) og copies (antal kopier).
+○	Udvid Media klassen med tre subklasser: Book, Magazine og Newspaper. Tilføj specifikke attributter for hver type:
+■	Book skal have author (forfatter) og ISBN.
+■	Magazine skal have issueNumber (udgivelsesnummer).
+■	Newspaper skal have publisher (udgiver).
+2.	Nedarvning:
+○	Brug nedarvning til at arve fælles egenskaber fra Media klassen til subklasserne.
+3.	ArrayLists:
+○	Opret en ArrayList til at holde en samling af Media objekter.
+4.	Sortering:
+○	Implementer funktionalitet til at sortere mediesamlingen baseret på titel og udgivelsesår. Brug Collections.sort() med en Comparator.
+5.	Funktionalitet:
+○	Tilføj funktionalitet til at tilføje og fjerne medier i samlingen.
+○	Skriv metoder til at udskrive listen af medier, både usorteret og sorteret.
+      6.  Polymorphism:
+	Tilføj abonnementstype for hvert tidskrift:
+●	En book om måneden for 200 kr. i kvartalet
+●	Et magazine hver 14. dag for 250 kr. om måneden
+●	En newspaper hver dag for 145 kr. pr. måned.
+Traverser gennem listen og udskriv alle abonnementsbetingelserne.
+Ekstra Udfordring:
+●	Implementer funktionalitet, hvor brugeren kan søge efter medier baseret på titel eller forfatter.
+

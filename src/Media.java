@@ -9,4 +9,8 @@ public class Media {
         this.year=year;
         this.copies=copies;
     }
+
+    public String toString(){
+        return ("Title: " + title + "\nyear of isuue: " +year+"\nTotal copies: " + copies+"\n");
+    }
 }
