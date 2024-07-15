@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FileHandler {
-
     public static ArrayList<Media> readFromFile() throws FileNotFoundException {
         ArrayList<Media> listOfMedias = new ArrayList<>();
         Scanner scan = new Scanner(new File("src/Media"));
@@ -120,5 +119,7 @@ public class FileHandler {
         return listOfMedias;
 
     }//end of readFromFile
+
+
 
 }

@@ -10,6 +10,6 @@ public class Main {
         /*for(Media m: medias){
             System.out.println(m);
         }*/
-        UI.mainMenu(input);
+        UI.mainMenu(input, medias);
     }
 }

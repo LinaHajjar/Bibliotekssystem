@@ -1,4 +1,4 @@
-public class Media {
+public class Media implements Comparable<Media>{
     String title;
     int year; //udgivelsesår
     int copies;
@@ -12,5 +12,15 @@ public class Media {
 
     public String toString(){
         return ("Title: " + title + "\nyear of isuue: " +year+"\nTotal copies: " + copies+"\n");
+    }
+
+    public String getTitle() {
+        return title;
+    }
+    public int getYear(){
+        return year;
+    }
+    public int compareTo (Media a){
+        return (this.getYear() -a.getYear());
     }
 }
