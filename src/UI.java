@@ -1,9 +1,10 @@
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UI {
-    public static void mainMenu(Scanner input, ArrayList<Media>medias)throws FileNotFoundException {
+    public static void mainMenu(Scanner input, ArrayList<Media>medias)throws IOException {
         System.out.println("Here is the main menu: ");
         System.out.println("1\t See the full list of medias\n" +
                 "2\t Add a media\n" +
@@ -20,8 +21,9 @@ public class UI {
                 System.out.println("you chose the option: see the full list of medias.");
                 MediaMethods.sortMedia(input, medias);
                 break;
-            case 2:
+            case 2: // done
                 System.out.println("you chose the option: add a media.");
+                MediaMethods.addMedia(input, medias);
                 break;
             case 3:
                 System.out.println("you chose the option: edit a media.");

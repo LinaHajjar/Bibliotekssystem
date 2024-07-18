@@ -9,4 +9,7 @@ public class Magazine extends Media{
     public String toString(){
         return ("Magazine:\n" +"Title: "+title+"\nDate of issue: "+ year+ "\nTotal copies: "+copies+"\nIssue number: "+issueNumber+"\n" );
     }
+    public String toPrint(){
+        return (title+" ; "+year+" ; "+copies+" ; " +issueNumber+"\n");
+    }
 }

@@ -9,4 +9,8 @@ public class Newspaper extends Media{
     public String toString(){
         return ("Newspaper:\n" +"Title: "+title+"\nDate of issue: "+ year+ "\nTotal copies: "+copies+"\nPublisher: "+publisher+"\n" );
     }
+
+    public String toPrint(){
+        return (title+" ; "+publisher+" ; "+year+" ; "+copies+"\n");
+    }
 }

@@ -1,11 +1,10 @@
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FileHandler {
-    public static ArrayList<Media> readFromFile() throws FileNotFoundException {
+    public static ArrayList<Media> readFromFile() throws IOException {
         ArrayList<Media> listOfMedias = new ArrayList<>();
         Scanner scan = new Scanner(new File("src/Media"));
 
@@ -120,6 +119,31 @@ public class FileHandler {
 
     }//end of readFromFile
 
+    public static void writeToFile(ArrayList<Media>medias) throws IOException {
+        BufferedWriter out = new BufferedWriter(new FileWriter("src/Media", false));
+        {
+            for (Media m : medias) {
+                if (m instanceof Book) {
+                    out.write(((Book) m).toPrint());
+                }
+            }
+            out.write("Magazine Section\n");
+            for (Media m : medias) {
+                if (m instanceof Magazine) {
+                    out.write(((Magazine) m).toPrint());
+                }
+            }
+            out.write("Newspaper Section\n");
+            for (Media m : medias) {
+                if (m instanceof Newspaper) {
+                    out.write(((Newspaper) m).toPrint());
+                }
+            }
+            out.write("End of file\n");
 
-
+            out.close();
+        }// end of writeToFile
+    }
 }
+
+

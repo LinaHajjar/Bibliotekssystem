@@ -12,5 +12,10 @@ public class Book extends Media{
     public String toString(){
         return ("Book:\n" +"Title: "+title+"\nDate of issue: "+ year+ "\nTotal copies: "+copies+"\nAuthor: "+author+"\nISBN: "+isbn+"\n" );
     }
+
+    public String toPrint(){
+        return (title+" ; "+author+" ; "+year+" ; "+copies+" ; "+isbn+"\n");
+    }
+
 }
 

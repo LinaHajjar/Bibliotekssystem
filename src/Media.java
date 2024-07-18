@@ -20,6 +20,13 @@ public class Media implements Comparable<Media>{
     public int getYear(){
         return year;
     }
+
+    public void setCopies(int copies){
+        this.copies=copies;
+    }
+    public String toPrint(){
+        return (title+" ; "+year+" ; "+copies+"\n");
+    }
     public int compareTo (Media a){
         return (this.getYear() -a.getYear());
     }
