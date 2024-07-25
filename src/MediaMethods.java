@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.lang.reflect.Array;
@@ -140,4 +141,92 @@ public class MediaMethods {
         }
         return exists;
     }
+
+    public static ArrayList<Media>searchMedia(Scanner input, ArrayList<Media> medias){
+        ArrayList<Media> matches = new ArrayList<>();
+        System.out.println("What would you like to search for? ");
+        String searchString = input.nextLine();
+        String[] keywords = searchString.split(",\\s+|\\.");
+        for (Media m : medias) {
+            for (int i = 0; i < keywords.length; i++) {
+                if (UserInput.containsIgnoreCase(m.getTitle(),keywords[i])) {
+                    matches.add(m);
+                    break;
+                } else if (m instanceof Book) {
+                    if(UserInput.containsIgnoreCase(((Book) m).author,keywords[i])) {
+                        matches.add(m);
+                        break;
+                    }
+                }
+                else if (m instanceof Newspaper){
+                    if (UserInput.containsIgnoreCase(((Newspaper) m).publisher,keywords[i])) {
+                        matches.add(m);
+                        break;
+                    }
+                }
+            }
+        }
+
+        if(matches.isEmpty()){
+            System.out.println("No matches found");
+        }
+        else {
+            System.out.println("Matches found:");
+            int i = 1;
+            for (Media m : matches) {
+                //System.out.println(m);
+                System.out.println(i +" "+ m);
+                i++;
+            }
+        }
+        return matches;
+    }//end of searchMedias
+
+    public static void borrowMedia(Scanner input, ArrayList<Media>medias) throws IOException{
+        ArrayList<Media> matches = searchMedia(input, medias);
+
+        if (matches.size()==1){
+
+            if (matches.getFirst().getCopies()<1) {
+                System.out.println("no available copies");
+
+            } else {
+                System.out.println("are you sure that you will borrow this media: " + matches.get(0).getTitle() + " ? yes / no");
+                String answer = input.nextLine();
+
+                //input.nextLine();
+
+                if (UserInput.containsIgnoreCase("yes", answer)){
+                    int Nb= matches.getFirst().getCopies();
+                    int indexMedia= medias.indexOf(matches.getFirst());
+                    System.out.println(medias.get(indexMedia));
+                    matches.getFirst().setCopies(Nb-1);
+
+                    medias.get(indexMedia).setCopies(Nb-1);
+                    System.out.println("you have now "+ medias.get(indexMedia).getCopies() + " copies of this media: " + medias.get(indexMedia).getTitle());
+                }
+            }
+
+        } else {
+            /*int i=1;
+            for (Media m: matches){
+                System.out.println(i +" "+ m);
+                i++;
+            }*/
+            System.out.println("enter the number of the media you want to borrow: ");
+            int choice = input.nextInt();
+            input.nextLine();
+            int newNb=matches.get(choice-1).getCopies();
+            if (newNb<1){
+                System.out.println("no available copies");
+            } else {
+                matches.get(choice - 1).setCopies(newNb - 1);
+                int indexMedia = medias.indexOf(matches.get(choice - 1));
+                medias.get(indexMedia).setCopies(newNb - 1);
+                System.out.println("you have now "+ medias.get(indexMedia).getCopies() + " copies of this media: " + medias.get(indexMedia).getTitle());
+            }
+        }
+        FileHandler.writeToFile(medias);
+    }//end of borrowMedia
+
 }

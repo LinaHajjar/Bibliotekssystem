@@ -21,6 +21,7 @@ public class Media implements Comparable<Media>{
         return year;
     }
 
+    public int getCopies(){return copies;}
     public void setCopies(int copies){
         this.copies=copies;
     }

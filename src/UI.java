@@ -13,7 +13,7 @@ public class UI {
                 "5\t Search for a media\n" +
                 "6\t Borrow a media\n" +
                 "7\t Return to the main menu\n"+
-                "8\t End the program:\n");
+                "8\t End the program.\n");
         int choice =UserInput.getIntInput("Choose an option from the main menu:\n", "wrong input, you should only use an integer between 1 and 8", 1, 8);
 
         switch (choice){
@@ -25,8 +25,9 @@ public class UI {
                 System.out.println("you chose the option: add a media.");
                 MediaMethods.addMedia(input, medias);
                 break;
-            case 3:
+            case 3: //to do next time
                 System.out.println("you chose the option: edit a media.");
+                //MediaMethods.editMedia(input, medias);
                 break;
             case 4:
                 System.out.println("you chose the option: delete a media.");
@@ -34,8 +35,10 @@ public class UI {
             case 5:
                 System.out.println("you chose the option: search for a media.");
                 break;
-            case 6:
+            case 6: // done
                 System.out.println("you chose the option: borrow a media.");
+                MediaMethods.borrowMedia(input, medias);
+                mainMenu(input,medias);
                 break;
             case 7: // done
                 System.out.println("returning to the main menu.");
