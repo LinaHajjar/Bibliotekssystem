@@ -25,6 +25,15 @@ public class Media implements Comparable<Media>{
     public void setCopies(int copies){
         this.copies=copies;
     }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
     public String toPrint(){
         return (title+" ; "+year+" ; "+copies+"\n");
     }

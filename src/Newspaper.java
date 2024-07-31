@@ -10,6 +10,14 @@ public class Newspaper extends Media{
         return ("Newspaper:\n" +"Title: "+title+"\nDate of issue: "+ year+ "\nTotal copies: "+copies+"\nPublisher: "+publisher+"\n" );
     }
 
+    public String getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
+
     public String toPrint(){
         return (title+" ; "+publisher+" ; "+year+" ; "+copies+"\n");
     }

@@ -193,9 +193,6 @@ public class MediaMethods {
             } else {
                 System.out.println("are you sure that you will borrow this media: " + matches.get(0).getTitle() + " ? yes / no");
                 String answer = input.nextLine();
-
-                //input.nextLine();
-
                 if (UserInput.containsIgnoreCase("yes", answer)){
                     int Nb= matches.getFirst().getCopies();
                     int indexMedia= medias.indexOf(matches.getFirst());
@@ -208,11 +205,6 @@ public class MediaMethods {
             }
 
         } else {
-            /*int i=1;
-            for (Media m: matches){
-                System.out.println(i +" "+ m);
-                i++;
-            }*/
             System.out.println("enter the number of the media you want to borrow: ");
             int choice = input.nextInt();
             input.nextLine();
@@ -228,5 +220,199 @@ public class MediaMethods {
         }
         FileHandler.writeToFile(medias);
     }//end of borrowMedia
+
+    public static void editMedia(Scanner input,ArrayList <Media>medias)throws IOException{
+        System.out.println("here is the list of medias, enter the number of the associated media you want to borrow:");
+        int count =1;
+        for (Media m: medias){
+            System.out.println(count+" "+m);
+            count++;
+        }
+        int choice= input.nextInt();
+        input.nextLine();
+        Media media = medias.get(choice-1);
+
+        if(media instanceof Book){
+            Book mediaBook = (Book) media;
+            editBook(input, mediaBook);
+        }
+        else if(media instanceof Magazine){
+            Magazine mediaMagazine = (Magazine) media;
+            editMagazine(input, mediaMagazine);
+        }
+        else if(media instanceof Newspaper){
+            Newspaper mediaNewspaper = (Newspaper) media;
+            editNewspaper(input, mediaNewspaper);
+        }
+        else{
+            System.out.println("Something went wrong, media of unknown type");
+        }
+        FileHandler.writeToFile(medias);
+    }
+
+    public static void editBook(Scanner input, Book mediaBook){
+        String answer;
+        System.out.println(mediaBook);
+        System.out.println("What would you like to change?");
+
+        int choice=UserInput.getIntInput("1.\t Title: "+mediaBook.getTitle()+"\n"+
+                "2.\t Author: "+mediaBook.getAuthor()+"\n"+
+                "3.\t Year: "+mediaBook.getYear()+"\n"+
+                "4.\t ISBN: "+mediaBook.getIsbn()+"\n", "you have entered a wrong number, just integers between 1 and 4 are allowed", 1, 4);
+
+        switch(choice){
+            case 1:
+                System.out.println("Enter the new title");
+                String s= input.nextLine();
+                mediaBook.setTitle(s);
+                System.out.println("the title is updated successfully");
+
+                System.out.println("Do you want to change another option? yes/no");
+                answer = input.nextLine();
+                if (UserInput.containsIgnoreCase("yes", answer)){
+                    editBook(input, mediaBook);
+                }
+                break;
+            case 2:
+                System.out.println("Enter the new author");
+                String a= input.nextLine();
+                mediaBook.setAuthor(a);
+                System.out.println("the author is updated successfully");
+
+                System.out.println("Do you want to change another option? yes/no");
+                answer = input.nextLine();
+                if (UserInput.containsIgnoreCase("yes", answer)){
+                    editBook(input, mediaBook);
+                }
+                break;
+            case 3:
+                System.out.println("Enter the updated year");
+                int y= input.nextInt();
+                input.nextLine();
+                mediaBook.setYear(y);
+                System.out.println("the year is updated successfully");
+
+                System.out.println("Do you want to change another option? yes/no");
+                answer = input.nextLine();
+                if (UserInput.containsIgnoreCase("yes", answer)){
+                    editBook(input, mediaBook);
+                }
+                break;
+            case 4:
+                System.out.println("Enter the updated ISBN");
+                String isbn= input.nextLine();
+                mediaBook.setIsbn(isbn);
+                System.out.println("the year is updated successfully");
+
+                System.out.println("Do you want to change another option? yes/no");
+                answer = input.nextLine();
+                if (UserInput.containsIgnoreCase("yes", answer)){
+                    editBook(input, mediaBook);
+                }
+                break;
+            default:
+                System.out.println("Invalid option, returning you the menu");
+        }
+    } // end of editBook
+    public static void editMagazine(Scanner input, Magazine mediaMagazine){
+        String answer;
+        System.out.println(mediaMagazine);
+        System.out.println("What would you like to change?");
+        int choice = UserInput.getIntInput("1.\t Title: "+mediaMagazine.getTitle()+"\n"+
+                "2.\t Year: "+mediaMagazine.getYear()+"\n"+
+                "3.\t Issuenumber: "+mediaMagazine.getIssueNumber()+"\n","you have entered a wrong number, just integers between 1 and 3", 1, 3);
+
+        switch(choice){
+            case 1:
+                System.out.println("Enter the new title");
+                String s= input.nextLine();
+                mediaMagazine.setTitle(s);
+                System.out.println("the title is updated successfully");
+
+                System.out.println("Do you want to change another option? yes/no");
+                answer = input.nextLine();
+                if (UserInput.containsIgnoreCase("yes", answer)){
+                    editMagazine(input, mediaMagazine);
+                }
+                break;
+            case 2:
+                System.out.println("Enter the updated year");
+                int y= input.nextInt();
+                mediaMagazine.setYear(y);
+                input.nextLine();
+                System.out.println("the year is updated successfully");
+
+                System.out.println("Do you want to change another option? yes/no");
+                answer = input.nextLine();
+                if (UserInput.containsIgnoreCase("yes", answer)){
+                    editMagazine(input, mediaMagazine);
+                }
+                break;
+            case 3:
+                System.out.println("Enter the updated issuenumber");
+                int issuenumber= input.nextInt();
+                mediaMagazine.setIssueNumber(issuenumber);
+                System.out.println("the issuenumber is updated successfully");
+
+                System.out.println("Do you want to change another option? yes/no");
+                answer = input.nextLine();
+                if (UserInput.containsIgnoreCase("yes", answer)){
+                    editMagazine(input, mediaMagazine);
+                }
+                break;
+            default:
+                System.out.println("Invalid option, returning you the menu");
+        }
+    } // end of editMagazine
+
+    public static void editNewspaper(Scanner input, Newspaper mediaNewspaper){
+        System.out.println(mediaNewspaper);
+        String answer;
+        System.out.println("What would you like to change?");
+        int choice = UserInput.getIntInput("1.\t Title: "+mediaNewspaper.getTitle()+"\n"+
+                "2.\t Year: "+mediaNewspaper.getYear()+"\n"+
+                "3.\t Publisher: "+mediaNewspaper.getPublisher()+"\n", "you have entered a wrong number, just integers between 1 and 3 are accepted", 1, 3);
+        switch(choice){
+            case 1:
+                System.out.println("Enter the new title");
+                String s= input.nextLine();
+                mediaNewspaper.setTitle(s);
+                System.out.println("the title is updated successfully");
+
+                System.out.println("Do you want to change another option? yes/no");
+                answer = input.nextLine();
+                if (UserInput.containsIgnoreCase("yes", answer)){
+                    editNewspaper(input, mediaNewspaper);
+                }
+                break;
+            case 2:
+                System.out.println("Enter the updated year");
+                int y= input.nextInt();
+                mediaNewspaper.setYear(y);
+                input.nextLine();
+                System.out.println("the year is updated successfully");
+
+                System.out.println("Do you want to change another option? yes/no");
+                answer = input.nextLine();
+                if (UserInput.containsIgnoreCase("yes", answer)){
+                    editNewspaper(input, mediaNewspaper);
+                }
+                break;
+            case 3:
+                System.out.println("Enter the updated publisher");
+                String publisher= input.nextLine();
+                mediaNewspaper.setPublisher(publisher);
+                System.out.println("the publisher is updated successfully");
+
+                System.out.println("Do you want to change another option? yes/no");
+                answer = input.nextLine();
+                if (UserInput.containsIgnoreCase("yes", answer)){
+                    editNewspaper(input, mediaNewspaper);
+                }
+                break;
+            default:
+                System.out.println("Invalid option, returning you the menu");
+        }
+    } // end of editNewspaper
 
 }

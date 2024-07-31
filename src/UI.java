@@ -20,14 +20,17 @@ public class UI {
             case 1: // done
                 System.out.println("you chose the option: see the full list of medias.");
                 MediaMethods.sortMedia(input, medias);
+                mainMenu(input,medias);
                 break;
             case 2: // done
                 System.out.println("you chose the option: add a media.");
                 MediaMethods.addMedia(input, medias);
+                mainMenu(input,medias);
                 break;
-            case 3: //to do next time
+            case 3:
                 System.out.println("you chose the option: edit a media.");
-                //MediaMethods.editMedia(input, medias);
+                MediaMethods.editMedia(input,medias);
+                mainMenu(input,medias);
                 break;
             case 4:
                 System.out.println("you chose the option: delete a media.");
