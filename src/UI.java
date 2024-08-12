@@ -37,8 +37,10 @@ public class UI {
                 MediaMethods.deleteMedia(input,medias);
                 mainMenu(input,medias);
                 break;
-            case 5:
+            case 5: //done
                 System.out.println("you chose the option: search for a media.");
+                MediaMethods.searchMedia(input,medias);
+                mainMenu(input,medias);
                 break;
             case 6: // done
                 System.out.println("you chose the option: borrow a media.");
