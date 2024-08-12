@@ -415,4 +415,62 @@ public class MediaMethods {
         }
     } // end of editNewspaper
 
+    public static void deleteMedia(Scanner input, ArrayList<Media> medias)throws IOException{
+        System.out.println("Here is the list of your medias: ");
+        for (Media m: medias){
+            System.out.println(m);
+        }
+
+        System.out.println("what is the title of the media you want to remove?");
+        String mediaDelete= input.nextLine();
+
+        ArrayList<Media> deleteMedia=new ArrayList<>();
+        for (Media m: medias){
+            if (UserInput.containsIgnoreCase(m.getTitle(),mediaDelete)){
+                deleteMedia.add(m);          }
+        }
+
+        if(deleteMedia.isEmpty()){
+            System.out.println("no matches found");
+            return;
+        }
+
+        int i =0;
+        System.out.println("Here are the matching medias: ");
+        for (Media s: deleteMedia){
+            System.out.println((i+1) + ": " +s.getTitle());
+            i++;
+        }
+
+        if (deleteMedia.size()==1){
+            System.out.println("Are you sure you want to delete the media? yes/ no");
+            String answer= input.nextLine();
+            if (UserInput.containsIgnoreCase("yes", answer)){
+                medias.remove(deleteMedia.get(0));
+                System.out.println("The media is successfully removed");
+                System.out.println();
+            }else {
+                System.out.println("Returning to main menu:");
+                UI.mainMenu(input, medias);
+            }
+        }else{
+            System.out.println("choose the number of the media you want to delete:");
+            int number=input.nextInt();
+            input.nextLine();
+            if (number >= 1 && number <= deleteMedia.size()) {
+                medias.remove(deleteMedia.get(number - 1));
+                System.out.println("The media is successfully removed");
+                System.out.println();
+            } else {
+                System.out.println("Invalid choice.");
+            }
+        }
+
+        System.out.println("Here is the list after you deleted the media:");
+        for (Media m : medias) {
+            System.out.println(m);
+        }
+        FileHandler.writeToFile(medias);
+
+    }// end of deleteMedia
 }

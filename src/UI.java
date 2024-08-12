@@ -27,13 +27,15 @@ public class UI {
                 MediaMethods.addMedia(input, medias);
                 mainMenu(input,medias);
                 break;
-            case 3:
+            case 3: // done
                 System.out.println("you chose the option: edit a media.");
                 MediaMethods.editMedia(input,medias);
                 mainMenu(input,medias);
                 break;
-            case 4:
+            case 4: // done
                 System.out.println("you chose the option: delete a media.");
+                MediaMethods.deleteMedia(input,medias);
+                mainMenu(input,medias);
                 break;
             case 5:
                 System.out.println("you chose the option: search for a media.");
